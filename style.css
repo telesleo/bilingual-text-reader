@@ -1,0 +1,93 @@
+
+body {
+  margin: 0;
+  padding: 50px 0 0 0;
+  background-color: gray;
+}
+
+body, button, textarea {
+  font-family: Montserrat, sans-serif;
+}
+
+.containerHorizontal {
+  display: flex;
+  justify-content: center;
+}
+
+.containerVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section {
+  margin: 0 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: rgb(46, 46, 46);
+  color: rgb(228, 228, 228);
+  border: none;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+button:active {
+  background-color: rgb(0, 0, 0);
+  padding: 4px 7px;
+  margin: 1px 5px;
+}
+
+#text {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+p {
+  margin: 8px;
+  font-family: serif;
+  font-size: 20px;
+}
+
+#window {
+  display: none;
+  flex-direction: column;
+
+  background-color: rgb(116, 18, 18);
+  position: fixed;
+  padding: 20px;
+
+  border-radius: 10px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+textarea {
+  resize: none;
+  margin-bottom: 8px;
+  width: 500px;
+  height: 200x;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+
+.skiptranslate {
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+#voices {
+  background-color: rgb(163, 163, 163);
+  border: none;
+  border-radius: 3px;
+  margin-right: 4px;
+}

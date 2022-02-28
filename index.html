@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <section>
+      <button translate="no" id="openTextInput">Load Text</button>
+    </section>
+    <section>
+      <div id="text" class="containerHorizontal">
+        <p id="text1" translate="no">L'ingénieur regrettait le chateau en fermant l'objet du désir.
+          Les laquais dissèquent-ils cette bétonneuse sinusoïdale ?
+          Je me terre à l'aéroport.
+          Un mutant stérile couine pour la science.prononcer !supprimer ?
+          Lara Croft ne se lamentait point sur Louis XVI...
+          L'incroyable Hulk s'attache à nos poulies achetées à crédit.
+          Des millionnaires démontent les poutrelles de chantier.
+        </p>
+        <p id="text2">L'ingénieur regrettait le chateau en fermant l'objet du désir.
+          Les laquais dissèquent-ils cette bétonneuse sinusoïdale ?
+          Je me terre à l'aéroport.
+          Un mutant stérile couine pour la science.prononcer !supprimer ?
+          Lara Croft ne se lamentait point sur Louis XVI...
+          L'incroyable Hulk s'attache à nos poulies achetées à crédit.
+          Des millionnaires démontent les poutrelles de chantier.
+        </p>
+      </div>
+    </section>
+    <section id="containerHorizontal" translate="no">
+      <select id="voices" translate="no"></select>
+      <button id="talk" translate="no">Speech</button>
+      <button id="stopTalking" translate="no">Stop</button>
+    </section>
+  </main>
+  <div id="window" class="containerVertical">
+    <textarea id="textAreaTextInput" name="" cols="30" rows="10"></textarea>
+    <div class="containerHorizontal">
+      <button translate="no" id="cancelTextInput">Cancel</button>
+      <button translate="no" id="loadTextInput">Load</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script src="textToSpeech.js"></script>
+
+</body>
+
+</html>
