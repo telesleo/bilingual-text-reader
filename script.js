@@ -77,8 +77,8 @@ function makeWhite(event) {
 
   var index = Array.prototype.indexOf.call(parent.children, child);
 
-  text1.children[index].style.background = 'rgb(90, 90, 90)';
-  text2.children[index].style.background = 'rgb(90, 90, 90)';
+  text1.children[index].className = 'selected';
+  text2.children[index].className = 'selected';
 }
 
 
@@ -89,14 +89,15 @@ function removeWhite(event) {
 
   var index = Array.prototype.indexOf.call(parent.children, child);
 
-  text1.children[index].style.background = 'none';
-  text2.children[index].style.background = 'none';
+  text1.children[index].className = '';
+  text2.children[index].className = '';
 }
 
 function pClick(event) {
   speech.text = event.target.innerText;
 
   window.speechSynthesis.cancel();
+  isSpeaking = false;
   window.speechSynthesis.speak(speech);
 }
 
