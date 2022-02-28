@@ -7,7 +7,7 @@ const loadTextInputButton = document.getElementById('loadTextInput');
 
 openTextInputButton.addEventListener('click', openTextInputWindow);
 cancelTextInputButton.addEventListener('click', cancelTextInput);
-loadTextInputButton.addEventListener('click', loadTextInput);
+loadTextInputButton.addEventListener('click', loadTextUsingButton);
 
 function openTextInputWindow() {
   textInputWindow.style.display = 'flex';
@@ -23,10 +23,18 @@ text2 = document.querySelector('#text2');
 
 let allPs;
 
-function loadTextInput () {
+function loadTextUsingButton() {
+
+  loadTextInput(textInputTextArea.value);
+}
+
+function loadTextInput(textInput) {
+  console.log(textInput);
   textInputWindow.style.display = 'none';
 
-  let text = textInputTextArea.value;
+  localStorage.setItem('text', textInput);
+
+  let text = textInput;
   let textArray;
 
   text = text.replace(/\./g, '.*');
@@ -104,5 +112,14 @@ function pClick(event) {
 function clearP() {
   for (let index = 0; index < allPs.length; index++) {
     allPs[index].style.background = 'none';
+  }
+}
+
+window.onload = onLoadPage;
+
+function onLoadPage() {
+  if (localStorage.getItem('text') != null) {
+    loadTextInput(localStorage.getItem('text'));
+    console.log('epa');
   }
 }

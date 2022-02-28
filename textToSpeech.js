@@ -49,7 +49,6 @@ document.querySelector("#stopTalking").addEventListener("click", () => {
 });
 
 speech.onend = function () {
-  console.log(currentText + ' e ' + textArray.length);
   if (currentText < textArray.length && isSpeaking == true) {
     speech.text = textArray[currentText].innerText;
 
