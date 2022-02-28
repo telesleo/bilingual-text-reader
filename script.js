@@ -18,14 +18,90 @@ function cancelTextInput() {
   textInputTextArea.value = '';
 }
 
-text1 = document.getElementById('text1');
-text2 = document.getElementById('text2');
+text1 = document.querySelector('#text1');
+text2 = document.querySelector('#text2');
+
+let allPs;
 
 function loadTextInput () {
   textInputWindow.style.display = 'none';
 
-  text1.innerText = textInputTextArea.value;
-  text2.innerText = textInputTextArea.value;
+  let text = textInputTextArea.value;
+  let textArray;
 
+  text = text.replace(/\./g, '.*');
+  text = text.replace(/\,/g, ',*');
+  text = text.replace(/\!/g, '!*');
+  text = text.replace(/\?/g, '?*');
+
+  textArray = text.split(/\*/g);
+
+  allPs = document.getElementsByTagName('p');
+
+  for (let index = allPs.length - 1; index >= 0; index--) {
+    allPs[index].parentNode.removeChild(allPs[index]);
+  }
+
+  for (let index = 0; index < textArray.length; index++) {
+    const p = document.createElement('p');
+    p.innerText = textArray[index];
+    p.addEventListener('mouseover', pMouseOver);
+    p.addEventListener('mouseout', pMouseOut);
+    p.addEventListener('click', pClick);
+    text1.appendChild(p);
+
+    const p2 = document.createElement('p');
+    p2.innerText = textArray[index];
+    p2.addEventListener('mouseover', pMouseOver);
+    p2.addEventListener('mouseout', pMouseOut);
+    text2.appendChild(p2);
+  }
+
+  allPs = document.getElementsByTagName('p');
+  
   textInputTextArea.value = '';
+}
+
+function pMouseOver(event) {
+  makeWhite(event);
+}
+
+function pMouseOut(event) {
+  removeWhite(event);
+}
+
+function makeWhite(event) {
+  var child = event.target;
+
+  var parent = child.parentNode;
+
+  var index = Array.prototype.indexOf.call(parent.children, child);
+
+  text1.children[index].style.background = 'rgb(90, 90, 90)';
+  text2.children[index].style.background = 'rgb(90, 90, 90)';
+}
+
+
+function removeWhite(event) {
+  var child = event.target;
+
+  var parent = child.parentNode;
+
+  var index = Array.prototype.indexOf.call(parent.children, child);
+
+  text1.children[index].style.background = 'none';
+  text2.children[index].style.background = 'none';
+}
+
+function pClick(event) {
+  speech.text = event.target.innerText;
+
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(speech);
+}
+
+function clearP() {
+  for (let index = 0; index < allPs.length; index++) {
+    allPs[index].style.background = 'none';
+  }
 }

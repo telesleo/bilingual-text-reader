@@ -2,7 +2,9 @@
 body {
   margin: 0;
   padding: 50px 0 0 0;
-  background-color: gray;
+  color: rgb(202, 202, 202);
+  background-color: rgb(90, 90, 90);
+  background-color: rgb(48, 48, 48);
 }
 
 body, button, textarea {
@@ -22,14 +24,14 @@ body, button, textarea {
 
 section {
   margin: 0 20px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: center;
 }
 
 button {
-  background-color: rgb(46, 46, 46);
-  color: rgb(228, 228, 228);
+  background-color: rgb(167, 167, 167);
+  color: rgb(0, 0, 0);
   border: none;
   padding: 5px 8px;
   border-radius: 3px;
@@ -38,27 +40,38 @@ button {
 }
 
 button:active {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(206, 206, 206);
   padding: 4px 7px;
   margin: 1px 5px;
 }
 
 #text {
-  max-width: 900px;
+  /*max-width: 900px;*/
   margin: 0 auto;
+  user-select: none;
+}
+
+#text1 {
+  margin: 0 10px;
+  max-width: 450px;
+}
+
+#text2 {
+  margin: 0 10px;
+  max-width: 450px;
 }
 
 p {
-  margin: 8px;
   font-family: serif;
   font-size: 20px;
+  display: inline;
 }
 
 #window {
   display: none;
   flex-direction: column;
 
-  background-color: rgb(116, 18, 18);
+  background-color: rgb(17, 17, 17);
   position: fixed;
   padding: 20px;
 
@@ -70,6 +83,7 @@ p {
 }
 
 textarea {
+  background-color: rgb(167, 167, 167);
   resize: none;
   margin-bottom: 8px;
   width: 500px;
@@ -77,12 +91,6 @@ textarea {
   border: none;
   outline: none;
   border-radius: 3px;
-}
-
-.skiptranslate {
-  border: none;
-  outline: none;
-  padding: 10px;
 }
 
 #voices {
