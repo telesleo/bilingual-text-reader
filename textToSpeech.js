@@ -2,17 +2,15 @@
 
 let speech = new SpeechSynthesisUtterance();
 
-let voices = []; // global array of available voices
+let voices = [];
 
 let voiceSelect = document.querySelector("#voices");
 
 let isSpeaking = false;
 
 window.speechSynthesis.onvoiceschanged = () => {
-  // Get List of Voices
   voices = window.speechSynthesis.getVoices();
 
-  // Initially set the First Voice in the Array.
   speech.voice = voices[0];
 
   voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
@@ -20,32 +18,25 @@ window.speechSynthesis.onvoiceschanged = () => {
 };
 
 voiceSelect.addEventListener("change", () => {
-  // On Voice change, use the value of the select menu (which is the index of the voice in the global voice array)
   speech.voice = voices[voiceSelect.value];
   localStorage.setItem('speechLang', voiceSelect.value);
 });
 
 text1 = document.getElementById('text1');
-//languageInput = document.getElementById('language');
 
 let text;
-let textArray;
+let textArray = [];
 let currentText = 0;
 
 document.querySelector("#talk").addEventListener("click", () => {
-  
   isSpeaking = true;
+  currentText = 0;
 
-  text = text1.innerText;
+  for (let index = 0; index < (allPs.length - 1) / 2; index++) {
+    textArray[index] = allPs[index];
+  }
 
-  text = text.replace(/\./g, ".*");
-  text = text.replace(/\,/g, ",*");
-  text = text.replace(/\!/g, "!*");
-  text = text.replace(/\?/g, "?*");
-
-  textArray = text.split(/\*/g);
-
-  speech.text = textArray[currentText];
+  speech.text = textArray[currentText].innerText;
   currentText =+ 1;
 
   window.speechSynthesis.cancel();
@@ -58,8 +49,9 @@ document.querySelector("#stopTalking").addEventListener("click", () => {
 });
 
 speech.onend = function () {
+  console.log(currentText + ' e ' + textArray.length);
   if (currentText < textArray.length && isSpeaking == true) {
-    speech.text = textArray[currentText];
+    speech.text = textArray[currentText].innerText;
 
     currentText += 1;
 
