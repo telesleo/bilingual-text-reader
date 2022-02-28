@@ -2,11 +2,11 @@
 
 let speech = new SpeechSynthesisUtterance();
 
-speech.lang = "en";
-
 let voices = []; // global array of available voices
 
 let voiceSelect = document.querySelector("#voices");
+
+let isSpeaking = false;
 
 window.speechSynthesis.onvoiceschanged = () => {
   // Get List of Voices
@@ -28,23 +28,50 @@ voiceSelect.addEventListener("change", () => {
 text1 = document.getElementById('text1');
 //languageInput = document.getElementById('language');
 
+let text;
+let textArray;
+let currentText = 0;
+
 document.querySelector("#talk").addEventListener("click", () => {
-  speech.text = text1.innerText;
+  
+  isSpeaking = true;
+
+  text = text1.innerText;
+
+  text = text.replace(/\./g, ".*");
+  text = text.replace(/\,/g, ",*");
+  text = text.replace(/\!/g, "!*");
+  text = text.replace(/\?/g, "?*");
+
+  textArray = text.split(/\*/g);
+
+  speech.text = textArray[currentText];
+  currentText =+ 1;
 
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(speech);
 });
 
 document.querySelector("#stopTalking").addEventListener("click", () => {
+  isSpeaking = false;
   window.speechSynthesis.cancel();
 });
 
-//window.onload = onLoadPage;
+speech.onend = function () {
+  if (currentText < textArray.length && isSpeaking == true) {
+    speech.text = textArray[currentText];
+
+    currentText += 1;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(speech);
+  }
+}
 
 function onLoadPage() {
   if(localStorage.getItem('speechLang') != null) {
     const initialLanguage = localStorage.getItem('speechLang');
-    speech.lang = voices[initialLanguage];
+    speech.voice = voices[initialLanguage];
     voiceSelect.options[initialLanguage].selected = 'selected'
   }
 }
