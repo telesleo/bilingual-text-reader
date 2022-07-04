@@ -1,10 +1,8 @@
-//special thanks to Mohan Raj https://www.section.io/engineering-education/text-to-speech-in-javascript/
+//thanks to Mohan Raj https://www.section.io/engineering-education/text-to-speech-in-javascript/
 
 let speech = new SpeechSynthesisUtterance();
-
 let voices = [];
-
-let voiceSelect = document.querySelector("#voices");
+let voiceSelect = document.querySelector("#languages");
 
 let isSpeaking = false;
 
@@ -17,10 +15,16 @@ window.speechSynthesis.onvoiceschanged = () => {
   onLoadPage();
 };
 
-voiceSelect.addEventListener("change", () => {
-  speech.voice = voices[voiceSelect.value];
-  localStorage.setItem('speechLang', voiceSelect.value);
-});
+let listenButton = document.getElementById('listen');
+
+function onListenClick() {
+  if (isSpeaking) {
+    stopSpeaking();
+  } else {
+    startSpeaking();
+  }
+}
+document.querySelector("#listen").addEventListener("click", onListenClick);
 
 text1 = document.getElementById('text1');
 
@@ -28,8 +32,10 @@ let text;
 let textArray = [];
 let currentText = 0;
 
-document.querySelector("#talk").addEventListener("click", () => {
+function startSpeaking() {
   isSpeaking = true;
+  listenButton.innerText = "Stop";
+
   currentText = 0;
 
   for (let index = 0; index < (allPs.length - 1) / 2; index++) {
@@ -37,16 +43,22 @@ document.querySelector("#talk").addEventListener("click", () => {
   }
 
   speech.text = textArray[currentText].innerText;
-  currentText =+ 1;
+  currentText = + 1;
 
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(speech);
+}
+
+voiceSelect.addEventListener("change", () => {
+  speech.voice = voices[voiceSelect.value];
+  localStorage.setItem('speechLang', voiceSelect.value);
 });
 
-document.querySelector("#stopTalking").addEventListener("click", () => {
+function stopSpeaking() {
   isSpeaking = false;
+  listenButton.innerText = "Listen";
   window.speechSynthesis.cancel();
-});
+}
 
 speech.onend = function () {
   if (currentText < textArray.length && isSpeaking == true) {
@@ -56,6 +68,8 @@ speech.onend = function () {
 
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(speech);
+  } else {
+    stopSpeaking();
   }
 }
 
