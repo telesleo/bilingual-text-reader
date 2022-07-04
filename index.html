@@ -23,9 +23,11 @@
       </div>
     </section>
     <section id="containerHorizontal" translate="no">
-      <select id="voices" translate="no"></select>
-      <button id="talk" translate="no">Speech</button>
-      <button id="stopTalking" translate="no">Stop</button>
+      <select id="languages" translate="no"></select>
+      <button id="listen" translate="no">Listen</button>
+    </section>
+    <section id="containerHorizontal" translate="no">
+      <button id="how-to-use-button" translate="no">how to use</button>
     </section>
   </main>
   <div id="window" class="containerVertical">
@@ -35,9 +37,22 @@
       <button translate="no" id="loadTextInput">Load</button>
     </div>
   </div>
-  <script src="script.js"></script>
-  <script src="textToSpeech.js"></script>
 
+  <div id="how-to-use">
+    <div>
+      <h3>load a text in your target language using the button,
+        right click on the page and select "translate to".
+        <br>
+        <br>
+        choose a language for the audio and click on the sentence to listen to it, enjoy :)
+      </h3>
+      <button id="how-to-use-got-it">got it</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="howToUse.js"></script>
+  <script src="textToSpeech.js"></script>
 </body>
 
 </html>

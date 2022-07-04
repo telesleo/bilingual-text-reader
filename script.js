@@ -24,7 +24,6 @@ text2 = document.querySelector('#text2');
 let allPs;
 
 function loadTextUsingButton() {
-
   loadTextInput(textInputTextArea.value);
 }
 
@@ -120,6 +119,5 @@ window.onload = onLoadPage;
 function onLoadPage() {
   if (localStorage.getItem('text') != null) {
     loadTextInput(localStorage.getItem('text'));
-    console.log('epa');
   }
 }
